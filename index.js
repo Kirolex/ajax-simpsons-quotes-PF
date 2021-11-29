@@ -1,39 +1,33 @@
-function fetchPokemonJSON() {
+function fetchSimpsonsJSON() {
+    
+    const url = `https://simpsons-quotes-api.herokuapp.com/quotes`;
 
-    // Feel free to download this HTML and edit it, to use another Pokemon ID
+    axios.get(url).then(function (response) {
+        console.log(response.data[0])
+        return response.data[0]; // response.data instead of response.json() with fetch
+
+    })
+
+        .then(function (Simpsons) {
+
+            console.log('data decoded from JSON:', Simpsons);
+
+
+            // Build a block of HTML
+
+            const SimpsonsHtml = `
   
-    const pokemonId = 1;
+          <p><strong>${Simpsons.quote}</strong></p>
   
-    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
-  
-    axios.get(url)
-  
-      .then(function(response) {
-  
-        return response.data; // response.data instead of response.json() with fetch
-  
-      })
-  
-      .then(function(pokemon) {
-  
-        console.log('data decoded from JSON:', pokemon);
-  
-  
-        // Build a block of HTML
-  
-        const pokemonHtml = `
-  
-          <p><strong>${pokemon.name}</strong></p>
-  
-          <img src="${pokemon.sprites.front_shiny}" />
+          <img src="${Simpsons.image}" />
   
         `;
-  
-        document.querySelector('#pokemon').innerHTML = pokemonHtml;
-  
-      });
-  
-  }
-  
-  
-  fetchPokemonJSON();
+
+            document.querySelector('#simpsons').innerHTML = SimpsonsHtml;
+
+        });
+
+}
+
+
+fetchSimpsonsJSON();
