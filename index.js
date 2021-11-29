@@ -16,6 +16,8 @@ function fetchSimpsonsJSON() {
             // Build a block of HTML
 
             const SimpsonsHtml = `
+            
+          <h1> ${Simpsons.character} </h1>
   
           <p><strong>${Simpsons.quote}</strong></p>
   
